@@ -3,7 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 // server setup
 const server = new ApolloServer({
-  //typeDefs
+  //typeDefs -- definitions of types of data to expose on our graph
   //resolvers
 })
 
