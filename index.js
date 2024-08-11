@@ -15,6 +15,12 @@ const resolvers = {
     authors() {
       return db.authors;
     },
+    review(_, args) {
+      return db.reviews.find((review) => review.id === args.id);
+    },
+    author(_, args) {
+      return db.authors.find((author) => author.id === args.id)
+    }
   },
 };
 
@@ -24,7 +30,7 @@ const resolvers = {
 // server setup
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 const { url } = await startStandaloneServer(server, {
