@@ -43,6 +43,20 @@ const resolvers = {
       return db.games.find((game) => game.id === parent.game_id);
     },
   },
+  Mutation: {
+    deleteGame(_, args) {
+      db.games = db.games.filter((game) => game.id !== args.id)
+      return db.games
+    },
+    addGame(_, args) {
+      let game = {
+        ...args.game, id: Math.floor(Math.random() * 1000).toString()
+      }
+      db.games.push(game)
+
+      return game
+    }
+  }
 };
 
 //typeDefs -- definitions of types of data to expose on our graph
@@ -55,7 +69,7 @@ const server = new ApolloServer({
 });
 
 const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 },
+  listen: { port: 3000 },
 });
 
-console.log('Server ready at port', 4000);
+console.log('Server ready at port', 3000);
